@@ -8,11 +8,16 @@
     <title>Products</title>
     <link rel="stylesheet" href="<c:url value="/resources/form_style.css" />" type="text/css"/>
     <style type="text/css">
-        body {background-image: url(<c:url value="/resources/fon.jpg" />);
+        body {
+            background-image: url(<c:url value="/resources/fon.jpg" />);
             background-size: 100%;
 
         }
-        div{ float: left;}
+
+        div {
+            float: left;
+        }
+
         TABLE {
             background: white; /* Цвет фона таблицы */
             color: white; /* Цвет текста */
@@ -33,41 +38,42 @@
         }
 
     </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 <body>
 <div class="form-style-5">
-<form:form action="/products/add" commandName="product">
-    <c:if test="${!empty product.name}">
-        <form:hidden path="id"/>
-    </c:if>
-    <legend><span class="number">1</span>Name</legend>
-    <form:input path="name"/><br/>
-    <legend><span class="number">2</span>Price</legend>
+    <form:form action="/products/add" commandName="product">
+        <c:if test="${!empty product.name}">
+            <form:hidden path="id"/>
+        </c:if>
+        <legend><span class="number">1</span>Name</legend>
+        <form:input path="name"/><br/>
+        <legend><span class="number">2</span>Price</legend>
         <form:input path="price"/><br/>
-    <legend><span class="number">3</span>Description</legend>
-    <form:textarea path="description"/><br/>
-    <input type="submit" value="Add product">
-</form:form>
-    </div>
+        <legend><span class="number">3</span>Description</legend>
+        <form:textarea path="description"/><br/>
+        <input type="submit" value="Add product">
+    </form:form>
+</div>
 <div>
-<c:if test="${!empty listProducts}">
-    <table>
-        <tr style="background-color: #ce153e">
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-        </tr>
-        <c:forEach items="${listProducts}" var="product">
-            <tr>
-                <td>${product.name}</td>
-                <td>${product.description}</td>
-                <td>${product.price}$</td>
-                <td><a href="<c:url value='/products/edit/${product.id}' />">Edit</a></td>
-                <td><a href="<c:url value='/products/remove/${product.id}' />">Remove</a></td>
+    <c:if test="${!empty listProducts}">
+        <table>
+            <tr style="background-color: #ce153e">
+                <th><a href="<c:url value="/products/sort=name"/>">Name</a></th>
+                <th><a href="<c:url value="/products/sort=price"/>">Price</a></th>
+                <th>Description</th>
             </tr>
-        </c:forEach>
-    </table>
-</c:if>
+            <c:forEach items="${listProducts}" var="product">
+                <tr>
+                    <td>${product.name}</td>
+                    <td>${product.price}$</td>
+                    <td>${product.description}</td>
+                    <td><a href="<c:url value='/products/edit/${product.id}' />">Edit</a></td>
+                    <td><a href="<c:url value='/products/remove/${product.id}' />">Remove</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
 </div>
 </body>
 </html>

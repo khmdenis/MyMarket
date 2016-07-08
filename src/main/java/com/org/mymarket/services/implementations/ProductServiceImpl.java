@@ -46,4 +46,16 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getList() {
         return productDao.getList();
     }
+
+    @Override
+    @Transactional
+    public List<Product> getSortedProductListASC(String type) {
+        return productDao.getSortedListASC(type);
+    }
+
+    @Override
+    @Transactional
+    public List<Product> getSortedProductListDESC(String type) {
+        return productDao.getSortedListDESC(type);
+    }
 }

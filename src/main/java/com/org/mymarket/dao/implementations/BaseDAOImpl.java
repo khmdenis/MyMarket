@@ -17,7 +17,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 
     private Class<T> type;
     @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
     protected BaseDAOImpl(){
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         type = (Class<T>) pt.getActualTypeArguments()[0];
