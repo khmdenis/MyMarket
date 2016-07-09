@@ -4,28 +4,27 @@ import com.org.mymarket.model.Product;
 import com.org.mymarket.services.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class HomeController {
+public class ProductController {
     @Autowired
     private ProductService productService;
     private String order = "";
-    private Map basket = new HashMap<Product, Integer>();
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getProductList(Model model){
-        model.addAttribute("product", new Product());
-        model.addAttribute("listProducts", productService.getSortedProductListASC("price"));
-        return "products";
+    public ModelAndView getProductList() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("products");
+        modelAndView.addObject("product", new Product());
+        modelAndView.addObject("listProducts", productService.getList());
+        return modelAndView;
     }
     @RequestMapping(value="/products/add", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("product") Product p){
@@ -43,27 +42,32 @@ public class HomeController {
         return "redirect:/";
     }
     @RequestMapping("/products/edit/{id}")
-    public String editProduct(@PathVariable("id") Long id, Model model){
-        model.addAttribute("product", productService.getById(id));
-        model.addAttribute("listProducts", productService.getList());
-        return "products";
+    public ModelAndView editProduct(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("product", productService.getById(id));
+        modelAndView.addObject("listProducts", productService.getList());
+        modelAndView.setViewName("products");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/products/sort={type}", method = RequestMethod.GET)
-    public String getProductSortedList(@PathVariable("type") String type, Model model) {
-        model.addAttribute("product", new Product());
+    public ModelAndView getProductSortedList(@PathVariable("type") String type) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("product", new Product());
         if (order.equals("") || order.equals("asc")) {
-            model.addAttribute("listProducts", productService.getSortedProductListASC(type));
+            modelAndView.addObject("listProducts", productService.getSortedProductListASC(type));
             order = "desc";
         } else if (order.equals("desc")) {
-            model.addAttribute("listProducts", productService.getSortedProductListDESC(type));
+            modelAndView.addObject("listProducts", productService.getSortedProductListDESC(type));
             order = "asc";
         } else {
-            model.addAttribute("listProducts", productService.getList());
+            modelAndView.addObject("listProducts", productService.getList());
         }
-        model.addAttribute("order", order);
-        return "products";
+        modelAndView.addObject("order", order);
+        modelAndView.setViewName("products");
+        return modelAndView;
     }
+
 
 }
 
