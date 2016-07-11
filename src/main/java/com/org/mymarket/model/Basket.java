@@ -10,6 +10,16 @@ import java.util.Map;
  */
 @Component
 public class Basket {
+    private double sum = 0;
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
+    }
+
     private Map<Product, Integer> basket = new HashMap();
 
     public Map<Product, Integer> getBasket() {
@@ -24,6 +34,9 @@ public class Basket {
         basket.remove(product);
     }
 
+    public void adjustSum(Double d) {
+        sum += d;
+    }
     public void clearBasket() {
         basket.clear();
     }

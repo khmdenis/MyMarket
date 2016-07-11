@@ -22,7 +22,7 @@ public class BasketController {
 
     @RequestMapping(value = "/basket", method = RequestMethod.GET)
     public ModelAndView listProducts() {
-        return new ModelAndView("basket", "listProducts", basket.getBasket());
+        return new ModelAndView("basket", "basket", basket);
     }
 
     @RequestMapping(value = "/basket/put/{id}", method = RequestMethod.GET)
@@ -31,12 +31,15 @@ public class BasketController {
         if (basket.getBasket().containsKey(p)) {
             basket.addProduct(p, basket.getBasket().get(p) + 1);
         } else basket.addProduct(p, 1);
+        basket.adjustSum(p.getPrice());
         return "redirect:/";
     }
 
     @RequestMapping(value = "/basket/remove/{id}", method = RequestMethod.GET)
     public String removeFromBasket(@PathVariable("id") Long id) {
-        basket.removeProduct(productService.getById(id));
+        Product p = productService.getById(id);
+        basket.adjustSum(-p.getPrice());
+        basket.removeProduct(p);
         return "redirect:/basket";
     }
 

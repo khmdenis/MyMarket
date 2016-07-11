@@ -42,14 +42,14 @@
 </head>
 <body>
 <div>
-    <c:if test="${!empty listProducts}">
+    <c:if test="${!empty basket.basket}">
         <table>
             <tr style="background-color: #ce153e">
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Price</th>
             </tr>
-            <c:forEach items="${listProducts}" var="product">
+            <c:forEach items="${basket.basket}" var="product">
                 <tr>
                     <td>${product.key.name}</td>
                     <td>${product.value}</td>
@@ -57,8 +57,11 @@
                     <td><a href="<c:url value='/basket/remove/${product.key.id}' />">Remove</a></td>
                 </tr>
             </c:forEach>
+            Total: ${basket.sum}$
         </table>
     </c:if>
+    <a href="/buyer_info">BUY</a>
 </div>
+<a href="/">GO HOME</a>
 </body>
 </html>
