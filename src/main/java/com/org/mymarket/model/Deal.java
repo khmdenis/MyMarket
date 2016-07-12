@@ -3,25 +3,25 @@ package com.org.mymarket.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by denis on 02.07.16.
  */
 @Entity
 @Table(name="deals")
-
 public class Deal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     Long id;
-    @Column(name="buyer")
+    @OneToOne(cascade = CascadeType.ALL)
     Buyer buyer;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="deals_products", joinColumns = @JoinColumn(name="deal_id"), inverseJoinColumns = @JoinColumn(name="product_id"))
-    @Column(name="purchas")
-    List<Product> purchases;
+    @ElementCollection
+    @CollectionTable(name = "deal_product", joinColumns = @JoinColumn(name = "deal_id"))
+    @MapKeyJoinColumn(name = "product_id")
+    @Column(name = "amount")
+    Map<Product, Integer> purchases;
     @Column(name="time")
     Date date = new Date();
 
@@ -41,11 +41,11 @@ public class Deal implements Serializable {
         this.buyer = buyer;
     }
 
-    public List<Product> getPurchases() {
+    public Map<Product, Integer> getPurchases() {
         return purchases;
     }
 
-    public void setPurchases(List<Product> purchases) {
+    public void setPurchases(Map<Product, Integer> purchases) {
         this.purchases = purchases;
     }
 }

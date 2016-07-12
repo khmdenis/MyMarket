@@ -3,7 +3,6 @@ package com.org.mymarket.controllers;
 import com.org.mymarket.model.Basket;
 import com.org.mymarket.model.Buyer;
 import com.org.mymarket.model.Deal;
-import com.org.mymarket.model.Product;
 import com.org.mymarket.services.interfaces.BuyerService;
 import com.org.mymarket.services.interfaces.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by denis on 11.07.16.
@@ -41,12 +36,7 @@ public class DealController {
         buyerService.add(buyer);
         Deal deal = new Deal();
         deal.setBuyer(buyer);
-        List<Product> list = new ArrayList<>();
-        for (Map.Entry<Product, Integer> entry : basket.getBasket().entrySet()) {
-            for (int i = 0; i < entry.getValue(); i++)
-                list.add(entry.getKey());
-        }
-        deal.setPurchases(list);
+        deal.setPurchases(basket.getBasket());
         dealService.add(deal);
         return "redirect:/";
     }
