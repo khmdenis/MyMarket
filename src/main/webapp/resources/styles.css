@@ -104,3 +104,37 @@
 {
     background: #109177;
 }
+
+.go-to-cart {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    float: right;
+    background: #ce153e;
+    color: white;
+    box-shadow: 0 0 10px black;
+    z-index: 0;
+}
+
+.go-to-cart .indicator {
+    z-index: 1;
+    position: absolute;
+    padding: 3px;
+    width: 19px;
+    bottom: -7px;
+    left: -7px;
+    float: right;
+    background: #1abc9c;
+    box-shadow: 0 0 10px black;
+    border-radius: 100%;
+}
+
+.cart_buy {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    background: #ce153e;
+    color: white;
+    box-shadow: 0 0 5px black;
+    float: right;
+}

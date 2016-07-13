@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Products</title>
-    <link rel="stylesheet" href="<c:url value="/resources/form_style.css" />" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/styles.css" />" type="text/css"/>
     <style type="text/css">
         body {
             background-image: url(<c:url value="/resources/fon.jpg" />);
@@ -71,14 +71,21 @@
                     <td>${product.name}</td>
                     <td>${product.price}$</td>
                     <td>${product.description}</td>
-                    <td><a href="<c:url value='/basket/put/${product.id}'/>">Put in basket</a></td>
+                    <td><a href="<c:url value='/cart/put/${product.id}'/>">Put in basket</a></td>
                     <td><a href="<c:url value='/products/edit/${product.id}' />">Edit</a></td>
                     <td><a href="<c:url value='/products/remove/${product.id}' />">Remove</a></td>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
+
 </div>
-<a href="<c:url value='/basket'/>">GO TO BASKET</a>
+<a class="go-to-cart" href="<c:url value='/cart'/>">
+    <c:if test="${!empty cart}">
+        <span class="indicator"> ${cart.getAmount()}</span>
+    </c:if>
+    <img src="<c:url value="/resources/cart.png" />"></a>
+
+
 </body>
 </html>

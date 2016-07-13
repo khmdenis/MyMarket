@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Products</title>
-    <link rel="stylesheet" href="<c:url value="/resources/form_style.css" />" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/styles.css" />" type="text/css"/>
     <style type="text/css">
         body {
             background-image: url(<c:url value="/resources/fon.jpg" />);
@@ -53,7 +53,7 @@
         <form:input path="name"/><br/>
         <legend><span class="number">2</span>Email</legend>
         <form:input path="email"/><br/>
-        <input type="submit" value="Checkout">
+        <input type="submit" value="Buy">
     </form:form>
 </div>
 

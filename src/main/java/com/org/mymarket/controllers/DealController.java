@@ -1,7 +1,7 @@
 package com.org.mymarket.controllers;
 
-import com.org.mymarket.model.Basket;
 import com.org.mymarket.model.Buyer;
+import com.org.mymarket.model.Cart;
 import com.org.mymarket.model.Deal;
 import com.org.mymarket.services.interfaces.BuyerService;
 import com.org.mymarket.services.interfaces.DealService;
@@ -22,7 +22,7 @@ public class DealController {
     @Autowired
     DealService dealService;
     @Autowired
-    Basket basket;
+    Cart cart;
 
     @RequestMapping(value = "/buyer_info", method = RequestMethod.GET)
     public ModelAndView identify() {
@@ -36,7 +36,7 @@ public class DealController {
         buyerService.add(buyer);
         Deal deal = new Deal();
         deal.setBuyer(buyer);
-        deal.setPurchases(basket.getBasket());
+        deal.setPurchases(cart);
         dealService.add(deal);
         return "redirect:/";
     }

@@ -5,6 +5,7 @@ import com.org.mymarket.model.Deal;
 import com.org.mymarket.services.interfaces.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by denis on 02.07.16.
  */
+@Service
 @Component
 public class DealServiceImpl implements DealService {
     @Autowired

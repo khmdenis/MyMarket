@@ -1,5 +1,6 @@
 package com.org.mymarket.controllers;
 
+import com.org.mymarket.model.Cart;
 import com.org.mymarket.model.Product;
 import com.org.mymarket.services.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private Cart cart;
     private String order = "";
 
 
@@ -23,6 +26,7 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("products");
         modelAndView.addObject("product", new Product());
+        modelAndView.addObject("cart", cart);
         modelAndView.addObject("listProducts", productService.getList());
         return modelAndView;
     }
