@@ -19,7 +19,6 @@
         }
 
         TABLE {
-            background: white; /* Цвет фона таблицы */
             color: white; /* Цвет текста */
             font-size: 18px;
             background-color: Transparent !important;
@@ -45,14 +44,23 @@
 </head>
 <body>
 <div class="form-style-5">
-    <form:form action="/buyer_info/checkout" commandName="buyer">
+    <form:form action="/mymarket/buyer_info" commandName="buyer">
         <c:if test="${!empty buyer.name}">
             <form:hidden path="id"/>
         </c:if>
         <legend><span class="number">1</span>Name</legend>
-        <form:input path="name"/><br/>
-        <legend><span class="number">2</span>Email</legend>
-        <form:input path="email"/><br/>
+        <form:input path="name"/>
+        <form:errors path="name"/><br/>
+        <legend><span class="number">2</span>City</legend>
+        <form:input path="city"/>
+        <form:errors path="city"/><br/>
+        <legend><span class="number">3</span>Phone number</legend>
+        <form:input path="phoneNumber"/>
+        <form:errors path="phoneNumber"/><br/>
+        <legend><span class="number">4</span>Email</legend>
+        <form:input path="email"/>
+        <form:errors path="email"/><br/>
+
         <input type="submit" value="Buy">
     </form:form>
 </div>

@@ -61,11 +61,11 @@
                 <tr>
                     <td></td>
                     <td colspan="2">Total: ${cart.getSum()}$</td>
-                    <td style="background-color:#ce153e "><a href="/cart/clean">Clean cart</a></td>
+                    <td style="background-color:#ce153e "><a href="<c:url value='/cart/clean'/>">Clean cart</a></td>
                 </tr>
             </table>
             <br/>
-            <a class="cart_buy" href="/buyer_info">Checkout</a>
+            <a class="cart_buy" href="<c:url value='/buyer_info'/>">Checkout</a>
         </c:when>
         <c:otherwise>
             <h1>Cart is empty</h1>
@@ -73,6 +73,6 @@
     </c:choose>
 </div>
 <br/>
-<a href="/">GO HOME</a>
+<a href="<c:url value='/'/>">GO HOME</a>
 </body>
 </html>

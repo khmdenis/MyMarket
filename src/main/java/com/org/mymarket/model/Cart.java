@@ -30,4 +30,10 @@ public class Cart extends HashMap<Product, Integer> {
         return amount;
     }
 
+    @Override
+    public void clear() {
+        super.clear();
+        sum = 0;
+    }
+
 }

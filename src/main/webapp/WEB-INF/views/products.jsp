@@ -45,7 +45,7 @@
 </head>
 <body>
 <div class="form-style-5">
-    <form:form action="/products/add" commandName="product">
+    <form:form action="/mymarket/products/add" commandName="product">
         <c:if test="${!empty product.name}">
             <form:hidden path="id"/>
         </c:if>

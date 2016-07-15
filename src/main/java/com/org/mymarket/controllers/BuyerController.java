@@ -7,16 +7,20 @@ import com.org.mymarket.services.interfaces.BuyerService;
 import com.org.mymarket.services.interfaces.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 /**
  * Created by denis on 11.07.16.
  */
 @Controller
-public class DealController {
+@RequestMapping("/buyer_info")
+public class BuyerController {
     @Autowired
     BuyerService buyerService;
     @Autowired
@@ -24,20 +28,23 @@ public class DealController {
     @Autowired
     Cart cart;
 
-    @RequestMapping(value = "/buyer_info", method = RequestMethod.GET)
-    public ModelAndView identify() {
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView setBuyer() {
         return new ModelAndView("buyer_info", "buyer", new Buyer());
     }
 
-    @RequestMapping(value = "/buyer_info/checkout", method = RequestMethod.POST)
 
-    public String checkout(@ModelAttribute("buyer") Buyer buyer) {
-        buyer.setPurchase(1);
+    @RequestMapping(method = RequestMethod.POST)
+    public String checkout(@ModelAttribute("buyer") @Valid Buyer buyer, BindingResult result) {
+        if (result.hasErrors()) {
+            return "buyer_info";
+        }
         buyerService.add(buyer);
         Deal deal = new Deal();
         deal.setBuyer(buyer);
         deal.setPurchases(cart);
         dealService.add(deal);
+        cart.clear();
         return "redirect:/";
     }
 }
