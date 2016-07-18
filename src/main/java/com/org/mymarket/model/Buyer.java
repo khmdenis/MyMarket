@@ -15,20 +15,20 @@ public class Buyer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
     @Column(name = "name")
     @NotEmpty(message = "Please enter your name and surname")
-    String name;
+    private String name;
     @Column(name = "city")
     @NotEmpty(message = "Please enter city where you live")
-    String city;
+    private String city;
     @Column(name = "phoneNumber")
     @NotEmpty(message = "Please enter your phone number")
-    String phoneNumber;
+    private String phoneNumber;
     @Column(name = "email")
     @NotEmpty(message = "Please enter your email")
     @Email(message = "Example: myemail@com.ua")
-    String email;
+    private String email;
 
 
     public Long getId() {

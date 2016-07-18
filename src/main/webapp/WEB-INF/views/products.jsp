@@ -85,7 +85,7 @@
         <span class="indicator"> ${cart.getAmount()}</span>
     </c:if>
     <img src="<c:url value="/resources/cart.png" />"></a>
-
+<a class="go-to-cart" href="<c:url value='/deals'/>">Deals</a>
 
 </body>
 </html>

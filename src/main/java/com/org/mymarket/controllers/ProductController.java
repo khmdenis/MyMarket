@@ -45,7 +45,8 @@ public class ProductController {
         productService.remove(p);
         return "redirect:/";
     }
-    @RequestMapping("/products/edit/{id}")
+
+    @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editProduct(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("product", productService.getById(id));

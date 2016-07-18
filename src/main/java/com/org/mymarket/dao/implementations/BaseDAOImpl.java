@@ -48,17 +48,13 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public List<T> getList() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<T> list = session.createCriteria(type).list();
-        return list;
+        return session.createCriteria(type).list();
     }
 
     @Override
     public T getById(Long id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(type);
-        criteria.add(Restrictions.eq("id", id));
-        T obj = (T) criteria.uniqueResult();
-        return obj;
+        return (T) session.get(type, new Long(id));
     }
 
     @Override

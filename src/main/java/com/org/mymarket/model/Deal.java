@@ -9,21 +9,23 @@ import java.util.Map;
  * Created by denis on 02.07.16.
  */
 @Entity
-@Table(name="deals")
+@Table(name = "deals")
 public class Deal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    Long id;
+    @Column(name = "id")
+    private Long id;
     @OneToOne(cascade = CascadeType.ALL)
-    Buyer buyer;
-    @ElementCollection
+    private Buyer buyer;
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "deal_product", joinColumns = @JoinColumn(name = "deal_id"))
     @MapKeyJoinColumn(name = "product_id")
     @Column(name = "amount")
-    Map<Product, Integer> purchases;
-    @Column(name="time")
-    Date date = new Date();
+    private Map<Product, Integer> purchases;
+    @Column(name = "total")
+    private Double total;
+    @Column(name = "time")
+    private Date date = new Date();
 
     public Long getId() {
         return id;
@@ -48,4 +50,22 @@ public class Deal implements Serializable {
     public void setPurchases(Map<Product, Integer> purchases) {
         this.purchases = purchases;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+
 }

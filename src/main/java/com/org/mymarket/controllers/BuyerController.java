@@ -43,6 +43,7 @@ public class BuyerController {
         Deal deal = new Deal();
         deal.setBuyer(buyer);
         deal.setPurchases(cart);
+        deal.setTotal(cart.getSum());
         dealService.add(deal);
         cart.clear();
         return "redirect:/";
