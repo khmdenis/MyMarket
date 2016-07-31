@@ -42,8 +42,8 @@ public class BuyerController {
         buyerService.add(buyer);
         Deal deal = new Deal();
         deal.setBuyer(buyer);
-        deal.setPurchases(cart);
-        deal.setTotal(cart.getSum());
+        deal.setItems(cart.convertToCartItemSet());
+        deal.setTotal(cart.getTotalPrice());
         dealService.add(deal);
         cart.clear();
         return "redirect:/";

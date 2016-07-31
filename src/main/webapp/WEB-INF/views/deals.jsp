@@ -48,9 +48,9 @@
 
     <c:forEach items="${deals}" var="deal">
 
-        Buyer: ${deal.buyer.name} Date: ${deal.getDate()}<br/>
-        <c:forEach items="${deal.getPurchases()}" var="product">
-            - ${product.key.name} x${product.value}<br/>
+        Buyer: ${deal.buyer.name} Date: ${deal.date}<br/>
+        <c:forEach items="${deal.items}" var="product">
+            - ${product.product.name} x${product.quantity}<br/>
         </c:forEach>
         Total: ${deal.total}$<br/>
     </c:forEach>

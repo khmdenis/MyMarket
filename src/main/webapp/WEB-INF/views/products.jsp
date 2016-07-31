@@ -82,7 +82,7 @@
 </div>
 <a class="go-to-cart" href="<c:url value='/cart'/>">
     <c:if test="${!empty cart}">
-        <span class="indicator"> ${cart.getAmount()}</span>
+        <span class="indicator"> ${cart.getTotalQuantity()}</span>
     </c:if>
     <img src="<c:url value="/resources/cart.png" />"></a>
 <a class="go-to-cart" href="<c:url value='/deals'/>">Deals</a>

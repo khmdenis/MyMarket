@@ -60,7 +60,7 @@
             </c:forEach>
                 <tr>
                     <td></td>
-                    <td colspan="2">Total: ${cart.getSum()}$</td>
+                    <td colspan="2">Total: ${cart.getTotalPrice()}$</td>
                     <td style="background-color:#ce153e "><a href="<c:url value='/cart/clean'/>">Clean cart</a></td>
                 </tr>
             </table>

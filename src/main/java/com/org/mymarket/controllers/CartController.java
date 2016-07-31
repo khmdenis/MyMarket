@@ -31,14 +31,14 @@ public class CartController {
         if (cart.containsKey(p)) {
             cart.put(p, cart.get(p) + 1);
         } else cart.put(p, 1);
-        cart.adjustSum(p.getPrice());
+        cart.adjustTotalPrice(p.getPrice());
         return "redirect:/";
     }
 
     @RequestMapping(value = "/cart/remove/{id}", method = RequestMethod.GET)
     public String removeFromCart(@PathVariable("id") Long id) {
         Product p = productService.getById(id);
-        cart.adjustSum(-p.getPrice() * cart.get(p));
+        cart.adjustTotalPrice(-p.getPrice() * cart.get(p));
         cart.remove(p);
         return "redirect:/cart";
     }

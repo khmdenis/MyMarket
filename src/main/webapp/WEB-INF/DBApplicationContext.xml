@@ -25,6 +25,7 @@
                 <beans:value>com.org.mymarket.model.Product</beans:value>
                 <beans:value>com.org.mymarket.model.Buyer</beans:value>
                 <beans:value>com.org.mymarket.model.Deal</beans:value>
+                <beans:value>com.org.mymarket.model.CartItem</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">

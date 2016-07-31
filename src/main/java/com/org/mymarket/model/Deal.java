@@ -3,7 +3,7 @@ package com.org.mymarket.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by denis on 02.07.16.
@@ -17,11 +17,17 @@ public class Deal implements Serializable {
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Buyer buyer;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "deal_product", joinColumns = @JoinColumn(name = "deal_id"))
-    @MapKeyJoinColumn(name = "product_id")
-    @Column(name = "amount")
-    private Map<Product, Integer> purchases;
+    //    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "deal_product", joinColumns = @JoinColumn(name = "deal_id"))
+//    @MapKeyJoinColumn(name = "product_id")
+//    @Column(name = "amount")
+//    private Map<Product, Integer> purchases;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "deals_carts",
+            joinColumns = @JoinColumn(name = "deal_id"),
+            inverseJoinColumns = @JoinColumn(name = "cartitem_id"))
+    @Column(name = "items")
+    private Set<CartItem> items;
     @Column(name = "total")
     private Double total;
     @Column(name = "time")
@@ -43,12 +49,12 @@ public class Deal implements Serializable {
         this.buyer = buyer;
     }
 
-    public Map<Product, Integer> getPurchases() {
-        return purchases;
+    public Set<CartItem> getItems() {
+        return items;
     }
 
-    public void setPurchases(Map<Product, Integer> purchases) {
-        this.purchases = purchases;
+    public void setItems(Set<CartItem> items) {
+        this.items = items;
     }
 
     public Date getDate() {
