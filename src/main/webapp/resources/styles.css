@@ -106,14 +106,15 @@
 }
 
 .go-to-cart {
+    margin: 10px;
     position: relative;
     text-align: center;
-    padding: 10px;
     float: right;
     background: #ce153e;
-    color: white;
     box-shadow: 0 0 10px black;
     z-index: 0;
+    padding: 5px;
+    border-radius: 100%;
 }
 
 .go-to-cart .indicator {
@@ -121,12 +122,16 @@
     position: absolute;
     padding: 3px;
     width: 19px;
-    bottom: -7px;
-    left: -7px;
+    bottom: -5px;
+    left: -5px;
     float: right;
     background: #1abc9c;
     box-shadow: 0 0 10px black;
     border-radius: 100%;
+}
+
+.go-to-cart:hover {
+    border-radius: 0%;
 }
 
 .cart_buy {
@@ -137,4 +142,26 @@
     color: white;
     box-shadow: 0 0 5px black;
     float: right;
+}
+
+.deals {
+    text-align: center;
+    margin: 0 auto;
+    width: 350px;
+    background-color: #e8eeef;
+}
+
+.deals span {
+    display: block;
+    margin: 0;
+    width: 100%;
+    background-color: #FFACA7;
+}
+
+.deals .date {
+    display: inherit;
+    background-color: #ce153e;
+    color: #FFFFFF;
+    float: right;
+    width: 150px;
 }

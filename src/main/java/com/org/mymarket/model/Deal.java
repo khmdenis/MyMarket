@@ -17,11 +17,6 @@ public class Deal implements Serializable {
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Buyer buyer;
-    //    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "deal_product", joinColumns = @JoinColumn(name = "deal_id"))
-//    @MapKeyJoinColumn(name = "product_id")
-//    @Column(name = "amount")
-//    private Map<Product, Integer> purchases;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "deals_carts",
             joinColumns = @JoinColumn(name = "deal_id"),

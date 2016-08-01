@@ -17,7 +17,6 @@ public class DealController {
 
     @RequestMapping(value = "/deals", method = RequestMethod.GET)
     public ModelAndView getDealsList() {
-
         return new ModelAndView("deals", "deals", dealService.getList());
     }
 }

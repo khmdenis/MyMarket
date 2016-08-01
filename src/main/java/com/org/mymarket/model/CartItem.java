@@ -1,5 +1,6 @@
 package com.org.mymarket.model;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 
