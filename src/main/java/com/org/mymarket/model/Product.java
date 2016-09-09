@@ -15,6 +15,10 @@ public class Product implements Serializable {
     private Long id;
     @Column(name="name")
     private String name;
+    @ManyToOne
+    private Category category;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Image image;
     @Column(name="description")
     private String description;
     @Column(name="price")
@@ -34,6 +38,14 @@ public class Product implements Serializable {
         this.name = name;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -48,6 +60,14 @@ public class Product implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

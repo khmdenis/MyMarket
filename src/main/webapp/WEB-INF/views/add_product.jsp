@@ -44,32 +44,28 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 <body>
-<c:forEach items="${categories}" var="category">
-    <a href="<c:url value='/products/category=${category.name}'/>">${category.name}</a>
-</c:forEach>
-<div>
-    <c:if test="${!empty listProducts}">
-        <table>
-            <tr style="background-color: #ce153e">
-                <th></th>
-                <th><a href="<c:url value="/products/sort=name"/>">Name</a></th>
-                <th><a href="<c:url value="/products/sort=price"/>">Price</a></th>
-                <th>Description</th>
-            </tr>
-            <c:forEach items="${listProducts}" var="product">
-                <tr>
-                    <td><img src="/mymarket/${product.image.imagePath}" alt="${product.name}"/></td>
-                    <td>${product.name}</td>
-                    <td>${product.price}$</td>
-                    <td>${product.description}</td>
-                    <td><a href="<c:url value='/cart/put/${product.id}'/>">Put in basket</a></td>
-                    <td><a href="<c:url value='/products/edit/${product.id}' />">Edit</a></td>
-                    <td><a href="<c:url value='/products/remove/${product.id}' />">Remove</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
 
+<div class="form-style-5">
+    <form:form modelAttribute="product" action="/mymarket/products/add" enctype="multipart/form-data">
+        <c:if test="${!empty product.name}">
+            <form:hidden path="id"/>
+        </c:if>
+        <legend><span class="number">1</span>Name</legend>
+        <form:input path="name"/><br/>
+        <legend><span class="number">2</span>Price</legend>
+        <form:input path="price"/><br/>
+        <legend><span class="number">3</span>Description</legend>
+        <form:textarea path="description"/><br/>
+        <legend><span class="number">4</span>Category</legend>
+        <form:select path="category.id">
+            <c:if test="${product.id == null}">
+                <form:option value="" label="-select-"/></c:if>
+            <form:options items="${categories}" itemLabel="name" itemValue="id"/>
+        </form:select><br/>
+        <legend><span class="number">5</span>Image</legend>
+        <input type="file" path="upload" name="upload"/>
+        <input type="submit" value="Add product">
+    </form:form><br/>
 </div>
 <a class="go-to-cart" href="<c:url value='/cart'/>">
     <c:if test="${!empty cart}">
@@ -78,8 +74,6 @@
     <img src="<c:url value="/resources/cart.png" />"></a>
 <a class="go-to-cart" href="<c:url value='/deals'/>">
     <img src="<c:url value="/resources/order.png" />"></a>
-<a class="go-to-cart" href="<c:url value='/products/new'/>">Add</a>
 <a class="go-to-cart" href="<c:url value='/category'/>">Category</a>
-
 </body>
 </html>

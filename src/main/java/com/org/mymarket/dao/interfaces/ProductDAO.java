@@ -1,5 +1,6 @@
 package com.org.mymarket.dao.interfaces;
 
+import com.org.mymarket.model.Category;
 import com.org.mymarket.model.Product;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface ProductDAO extends BaseDAO<Product> {
     List<Product> getSortedListASC(String type);
 
     List<Product> getSortedListDESC(String type);
+
+    List<Product> getListByCategory(Category category);
 }
